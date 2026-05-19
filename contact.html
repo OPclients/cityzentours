@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Marrakech Prestige for custom Morocco tours and luxury transport.">
+    <title>Contact | Marrakech Prestige</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body data-page="Contact">
+    <main class="site-shell">
+      <section class="page-hero">
+        <div class="hero-media"><img src="assets/images/contact.png" alt="Luxury Morocco booking and private travel consultation"></div>
+        <div class="container-lux hero-content text-[#F8F4EC]">
+          <h1 class="brand-serif max-w-4xl text-[clamp(3.3rem,8vw,7rem)] font-bold leading-[.88]">Begin your private Morocco experience.</h1>
+          <p class="mt-7 max-w-2xl text-lg leading-9 text-[rgba(248,244,236,.78)]">Tell us where you want to go, how you like to travel, and what service you need. We will prepare a refined proposal.</p>
+        </div>
+      </section>
+
+      <section class="section-pad booking-section">
+        <div class="container-lux">
+          <div class="mx-auto mb-10 max-w-3xl text-center reveal">
+            <h2 class="section-title">Reserve your journey.</h2>
+            <p class="lead mt-5">Share your itinerary details and preferences. Our team will confirm availability and prepare a refined tour or transport proposal.</p>
+          </div>
+        </div>
+        <div class="container-lux grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,.75fr)]">
+          <form id="contactForm" class="booking-card reveal" novalidate>
+            <div class="booking-inner">
+              <h3 class="brand-serif text-[clamp(2.4rem,4vw,4rem)] font-bold leading-none text-[#07111F]">Booking request</h3>
+              <p class="mt-4 max-w-2xl leading-8 text-[#6f6257]">A dedicated coordinator will review your request and reply with the best route, vehicle, and timing.</p>
+
+              <div class="booking-section-title">DÉTAILS DE L’ITINÉRAIRE</div>
+              <div class="grid gap-5 md:grid-cols-2">
+                <label class="booking-label" for="serviceDestination">Service ou destination
+                  <select class="booking-input" id="serviceDestination" name="serviceDestination" required>
+                    <option value="">Sélectionnez votre destination...</option>
+                    <option>Custom Morocco Tour</option>
+                    <option>Marrakech</option>
+                    <option>Fes</option>
+                    <option>Chefchaouen</option>
+                    <option>Merzouga Desert</option>
+                    <option>Casablanca & Rabat</option>
+                    <option>Essaouira</option>
+                    <option>Airport Transfer</option>
+                    <option>Luxury Transport</option>
+                    <option>Private Chauffeur</option>
+                  </select>
+                </label>
+                <label class="booking-label" for="vehicle">Véhicule préféré
+                  <select class="booking-input" id="vehicle" name="vehicle" required>
+                    <option value="">Sélectionnez la catégorie...</option>
+                    <option>Mercedes-Benz V-Class</option>
+                    <option>Mercedes-Benz E-Class</option>
+                    <option>Mercedes-Benz S-Class</option>
+                    <option>Range Rover</option>
+                    <option>Toyota Prado</option>
+                    <option>Hyundai H1 VIP Van</option>
+                    <option>Luxury Minibus</option>
+                    <option>No vehicle needed</option>
+                  </select>
+                </label>
+                <label class="booking-label" for="pickup">Lieu de prise en charge
+                  <input class="booking-input" id="pickup" name="pickup" type="text" placeholder="Hôtel, Aéroport ou Riad" required>
+                </label>
+                <label class="booking-label" for="datetime">Date et heure
+                  <input class="booking-input" id="datetime" name="datetime" type="datetime-local" required>
+                </label>
+              </div>
+
+              <div class="booking-section-title">CONTACT ET PRÉFÉRENCES</div>
+              <div class="grid gap-5 md:grid-cols-2">
+                <label class="booking-label" for="name">Nom complet
+                  <input class="booking-input" id="name" name="name" type="text" placeholder="Votre Nom" autocomplete="name" required>
+                </label>
+                <label class="booking-label" for="phone">Numéro WhatsApp / Téléphone
+                  <input class="booking-input" id="phone" name="phone" type="tel" placeholder="+..." autocomplete="tel" required>
+                </label>
+                <label class="booking-label" for="email">Email
+                  <input class="booking-input" id="email" name="email" type="email" placeholder="votre@email.com" autocomplete="email" required>
+                </label>
+                <label class="booking-label" for="people">Nombre de personnes
+                  <input class="booking-input" id="people" name="people" type="number" min="1" placeholder="Ex: 2" required>
+                </label>
+                <label class="booking-label md:col-span-2" for="requests">Demandes particulières
+                  <textarea class="booking-input min-h-36 resize-y" id="requests" name="requests" placeholder="Numéros de vol, sièges enfants, ou demandes spécifiques..." required></textarea>
+                </label>
+              </div>
+              <button class="booking-submit" type="submit">DEMANDER LA RÉSERVATION</button>
+              <div id="formStatus" aria-live="polite"></div>
+            </div>
+          </form>
+
+          <aside class="grid content-start gap-5 sm:grid-cols-2 lg:grid-cols-1">
+            <article class="contact-info-card reveal">
+              <span class="icon-medallion">WA</span>
+              <h3 class="brand-serif mt-5 text-3xl font-bold text-[#07111F]">WhatsApp</h3>
+              <p class="mt-3 leading-7 text-[#6f6257]">Fastest response for itinerary and transport requests.</p>
+              <a class="mt-4 inline-block font-bold text-[#B86B4B]" href="https://wa.me/212600000000" target="_blank" rel="noreferrer">+212 600 000 000</a>
+            </article>
+            <article class="contact-info-card reveal">
+              <span class="icon-medallion">@</span>
+              <h3 class="brand-serif mt-5 text-3xl font-bold text-[#07111F]">Email</h3>
+              <p class="mt-3 leading-7 text-[#6f6257]">For detailed programs, business bookings, and event transport.</p>
+              <a class="mt-4 inline-block font-bold text-[#B86B4B]" href="mailto:hello@marrakechprestige.example">hello@marrakechprestige.example</a>
+            </article>
+            <article class="contact-info-card reveal">
+              <span class="icon-medallion">MA</span>
+              <h3 class="brand-serif mt-5 text-3xl font-bold text-[#07111F]">Service Area</h3>
+              <p class="mt-3 leading-7 text-[#6f6257]">Morocco, including Marrakech, Fes, Casablanca, Rabat, Chefchaouen, Merzouga, and Essaouira.</p>
+            </article>
+            <article class="contact-info-card reveal">
+              <span class="icon-medallion">7/7</span>
+              <h3 class="brand-serif mt-5 text-3xl font-bold text-[#07111F]">Availability</h3>
+              <p class="mt-3 leading-7 text-[#6f6257]">7/7 on request for private tours, transfers, events, and chauffeur service.</p>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-pad deep-band">
+        <div class="container-lux grid items-center gap-10 lg:grid-cols-2">
+          <div class="reveal">
+            <h2 class="section-title light">Service area</h2>
+            <p class="lead light mt-6">Marrakech, Casablanca, Rabat, Fes, Tangier, Chefchaouen, Essaouira, Agafay, Atlas Mountains, Merzouga, and long-distance routes across Morocco.</p>
+            <a class="btn btn-gold mt-8 md:w-auto" href="https://wa.me/212600000000" target="_blank" rel="noreferrer">WhatsApp Us Now</a>
+          </div>
+          <div class="lux-card dark-card reveal min-h-[24rem] overflow-hidden p-0">
+            <div class="flex h-full min-h-[24rem] items-center justify-center bg-[linear-gradient(135deg,rgba(201,164,92,.18),rgba(184,107,75,.12)),repeating-linear-gradient(45deg,rgba(248,244,236,.08)_0_1px,transparent_1px_20px)] p-8 text-center">
+              <div>
+                <h3 class="brand-serif text-5xl font-bold text-[#F8F4EC]">Morocco Coverage</h3>
+                <p class="mx-auto mt-5 max-w-md leading-8 text-[rgba(248,244,236,.72)]">Airport pickup, private chauffeur, tour transport, and city-to-city transfers from the country's major travel hubs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
+
