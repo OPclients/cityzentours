@@ -57,6 +57,31 @@ svg {
   height: 1.25rem;
 }
 
+.brand-logo {
+  display: block;
+  width: auto;
+  height: clamp(2.65rem, 5vw, 3.45rem);
+  max-width: min(11rem, 42vw);
+  object-fit: contain;
+  padding: 0.28rem 0.48rem;
+  border: 1px solid rgba(201, 164, 92, 0.24);
+  border-radius: 0.75rem;
+  background: rgba(248, 244, 236, 0.94);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+}
+
+.footer-logo {
+  display: block;
+  width: auto;
+  height: clamp(4.25rem, 8vw, 5.75rem);
+  max-width: min(15rem, 100%);
+  object-fit: contain;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgba(201, 164, 92, 0.24);
+  border-radius: 1rem;
+  background: rgba(248, 244, 236, 0.94);
+}
+
 .site-shell {
   min-height: 100vh;
 }
@@ -117,11 +142,13 @@ svg {
 
 .mobile-panel {
   transform: translateY(-105%);
-  transition: transform 0.38s ease;
+  visibility: hidden;
+  transition: transform 0.38s ease, visibility 0.38s ease;
 }
 
 .mobile-panel.open {
   transform: translateY(0);
+  visibility: visible;
 }
 
 .lux-hero {
@@ -351,48 +378,80 @@ svg {
   max-height: 5rem;
 }
 
-.car-card {
+.transport-card .transport-meta,
+.transport-card .card-cta {
+  opacity: 0;
+  max-height: 0;
   overflow: hidden;
-  border-radius: 1.45rem;
-  background: linear-gradient(145deg, rgba(255, 252, 245, 0.88), rgba(234, 219, 200, 0.7));
-  border: 1px solid rgba(201, 164, 92, 0.2);
-  box-shadow: 0 24px 70px rgba(17, 24, 39, 0.12);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transform: translateY(0.5rem);
+  transition: opacity 0.35s ease, max-height 0.35s ease, transform 0.35s ease;
 }
 
-.car-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 90px rgba(17, 24, 39, 0.18);
+.transport-card {
+  height: clamp(25rem, 34vw, 30rem);
+  min-height: clamp(25rem, 34vw, 30rem);
 }
 
-.car-media {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
+.transport-card:hover .card-copy p,
+.transport-card:focus-within .card-copy p {
+  opacity: 1;
+  max-height: 7rem;
 }
 
-.car-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.75s ease;
+.transport-card:hover .transport-meta,
+.transport-card:hover .card-cta,
+.transport-card:focus-within .transport-meta,
+.transport-card:focus-within .card-cta {
+  opacity: 1;
+  max-height: 9rem;
+  transform: translateY(0);
 }
 
-.car-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.2) 42%, transparent 58%);
-  transform: translateX(-110%);
-  transition: transform 0.75s ease;
+.transport-meta {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
 }
 
-.car-card:hover .car-media img {
-  transform: scale(1.09);
+.transport-meta span {
+  display: block;
+  color: rgba(248, 244, 236, 0.76);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.45;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.car-card:hover .car-media::after {
-  transform: translateX(110%);
+.transport-meta strong {
+  color: #f8f4ec;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(201, 164, 92, 0.7);
+  border-radius: 999px;
+  color: var(--navy);
+  background: linear-gradient(135deg, #f1d993, var(--gold));
+  box-shadow: 0 12px 34px rgba(201, 164, 92, 0.28);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.card-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 46px rgba(201, 164, 92, 0.42);
 }
 
 .deep-band {
@@ -738,12 +797,31 @@ svg {
     min-height: 20rem;
   }
 
+  .transport-card {
+    height: 28rem;
+    min-height: 28rem;
+  }
+
   .split-image {
     min-height: 21rem;
   }
 
   .btn {
     width: 100%;
+  }
+}
+
+@media (hover: none) {
+  .transport-card .card-copy {
+    transform: translateY(0);
+  }
+
+  .transport-card .card-copy p,
+  .transport-card .transport-meta,
+  .transport-card .card-cta {
+    opacity: 1;
+    max-height: 10rem;
+    transform: translateY(0);
   }
 }
 

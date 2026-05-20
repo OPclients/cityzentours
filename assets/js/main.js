@@ -14,7 +14,7 @@ const legalLinks = [
 
 const pageName = document.body.dataset.page || "Home";
 const whatsappNumber = "212600000000";
-const businessEmail = "hello@marrakechprestige.example";
+const businessEmail = "hello@cityzentours.example";
 
 function iconSvg(name) {
   const icons = {
@@ -33,13 +33,9 @@ function buildHeader() {
   const header = document.createElement("header");
   header.className = "site-header";
   header.innerHTML = `
-    <nav class="container-lux flex h-20 items-center justify-between">
-      <a href="index.html" class="group flex items-center gap-3" aria-label="Marrakech Prestige home">
-        <span class="grid h-11 w-11 place-items-center rounded-full border border-[rgba(201,164,92,.38)] bg-[rgba(248,244,236,.08)] text-[#C9A45C] transition group-hover:bg-[rgba(201,164,92,.16)]">${iconSvg("compass")}</span>
-        <span>
-          <span class="brand-serif block text-2xl font-bold leading-none text-[#F8F4EC]">Marrakech Prestige</span>
-          <span class="block text-[10px] font-bold uppercase tracking-[.28em] text-[#C9A45C]">Tours & Transport</span>
-        </span>
+    <nav class="container-lux relative z-50 flex h-20 items-center justify-between">
+      <a href="index.html" class="group flex items-center" aria-label="Cityzen Tours home">
+        <img class="brand-logo" src="assets/images/logo.png" alt="Cityzen Tours logo">
       </a>
       <div class="hidden items-center gap-8 lg:flex">
         ${pages.map(([label, href]) => `<a class="nav-link ${pageName === label ? "active" : ""}" href="${href}">${label}</a>`).join("")}
@@ -49,7 +45,7 @@ function buildHeader() {
         <span class="h-6 w-6">${iconSvg("menu")}</span>
       </button>
     </nav>
-    <div class="mobile-panel fixed inset-x-0 top-0 z-[-1] bg-[#07111F]/95 px-6 pb-8 pt-24 shadow-2xl backdrop-blur-xl lg:hidden">
+    <div class="mobile-panel fixed inset-x-0 top-0 z-40 bg-[#07111F]/95 px-6 pb-8 pt-24 shadow-2xl backdrop-blur-xl lg:hidden">
       <div class="grid gap-4">
         ${pages.map(([label, href]) => `<a class="rounded-2xl border border-[rgba(201,164,92,.18)] px-5 py-4 text-sm font-bold uppercase tracking-[.16em] text-[#F8F4EC] ${pageName === label ? "bg-[rgba(201,164,92,.12)] text-[#C9A45C]" : ""}" href="${href}">${label}</a>`).join("")}
       </div>
@@ -60,11 +56,24 @@ function buildHeader() {
 
   const toggle = header.querySelector(".menu-toggle");
   const panel = header.querySelector(".mobile-panel");
+  const setMenuOpen = (open) => {
+    panel.classList.toggle("open", open);
+    document.body.classList.toggle("menu-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    toggle.innerHTML = `<span class="h-6 w-6">${iconSvg(open ? "close" : "menu")}</span>`;
+  };
+
   toggle.addEventListener("click", () => {
-    const isOpen = panel.classList.toggle("open");
-    document.body.classList.toggle("menu-open", isOpen);
-    toggle.setAttribute("aria-expanded", String(isOpen));
-    toggle.innerHTML = `<span class="h-6 w-6">${iconSvg(isOpen ? "close" : "menu")}</span>`;
+    setMenuOpen(!panel.classList.contains("open"));
+  });
+
+  panel.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenuOpen(false);
   });
 
   window.addEventListener("scroll", () => {
@@ -80,12 +89,8 @@ function buildFooter() {
     <div class="container-lux">
       <div class="grid gap-10 border-b border-[rgba(201,164,92,.18)] pb-12 lg:grid-cols-[1.35fr_.8fr_.8fr_.8fr_1fr]">
         <div>
-          <a href="index.html" class="flex items-center gap-3">
-            <span class="grid h-12 w-12 place-items-center rounded-full border border-[rgba(201,164,92,.38)] text-[#C9A45C]">${iconSvg("compass")}</span>
-            <span>
-              <span class="brand-serif block text-3xl font-bold leading-none text-[#F8F4EC]">Marrakech Prestige</span>
-              <span class="block text-[10px] font-bold uppercase tracking-[.28em] text-[#C9A45C]">Tours & Transport</span>
-            </span>
+          <a href="index.html" class="inline-flex items-center" aria-label="Cityzen Tours home">
+            <img class="footer-logo" src="assets/images/logo.png" alt="Cityzen Tours logo">
           </a>
           <p class="mt-6 max-w-sm leading-8">Private Moroccan journeys, elegant chauffeur services, and luxury transport arranged around your schedule, style, and pace.</p>
           <div class="mt-6 flex gap-3">
@@ -113,11 +118,11 @@ function buildFooter() {
           <h3 class="mb-5 text-sm font-bold uppercase tracking-[.2em] text-[#C9A45C]">Contact</h3>
           <p class="leading-8">Marrakech, Morocco<br>Available across Morocco</p>
           <a class="footer-link mt-3 text-[#C9A45C]" href="https://wa.me/${whatsappNumber}" target="_blank" rel="noreferrer">WhatsApp: +212 600 000 000</a>
-          <a class="footer-link" href="mailto:hello@marrakechprestige.example">hello@marrakechprestige.example</a>
+          <a class="footer-link" href="mailto:hello@cityzentours.example">hello@cityzentours.example</a>
         </div>
       </div>
       <div class="flex flex-col gap-3 pt-8 text-sm text-[rgba(248,244,236,.56)] md:flex-row md:items-center md:justify-between">
-        <p>Copyright <span id="year"></span> Marrakech Prestige Tours & Transport. All rights reserved.</p>
+        <p>Copyright <span id="year"></span> Cityzen Tours. All rights reserved.</p>
         <p>Luxury custom tours and private chauffeur service in Morocco.</p>
       </div>
     </div>
@@ -165,7 +170,7 @@ function initCounters() {
 function initImageFallbacks() {
   document.querySelectorAll("img").forEach((img) => {
     img.addEventListener("error", () => {
-      img.closest(".image-card, .split-image, .car-media, .hero-media")?.classList.add("image-fallback");
+      img.closest(".image-card, .split-image, .hero-media")?.classList.add("image-fallback");
     }, { once: true });
   });
 }
