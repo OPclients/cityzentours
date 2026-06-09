@@ -724,6 +724,136 @@ svg {
   background: rgba(201, 164, 92, 0.12);
 }
 
+.language-toggle {
+  position: fixed;
+  left: clamp(0.75rem, 2vw, 1.35rem);
+  bottom: clamp(0.75rem, 2vw, 1.35rem);
+  z-index: 48;
+  display: flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0.32rem;
+  border: 1px solid rgba(201, 164, 92, 0.35);
+  border-radius: 999px;
+  background: rgba(7, 17, 31, 0.84);
+  box-shadow: 0 18px 44px rgba(7, 17, 31, 0.28);
+  backdrop-filter: blur(18px);
+  direction: ltr;
+}
+
+.language-option {
+  display: grid;
+  place-items: center;
+  min-width: 2.35rem;
+  height: 2.35rem;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(248, 244, 236, 0.78);
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.language-option:hover {
+  color: var(--ivory);
+  background: rgba(248, 244, 236, 0.08);
+  transform: translateY(-2px);
+}
+
+.language-option.active {
+  color: var(--navy);
+  background: linear-gradient(135deg, #f1d993, var(--gold));
+  box-shadow: 0 12px 28px rgba(201, 164, 92, 0.28);
+}
+
+.language-option:focus-visible {
+  outline: 2px solid var(--ivory);
+  outline-offset: 3px;
+}
+
+html[dir="rtl"] body {
+  text-align: right;
+}
+
+html[lang="ar"] body,
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] .brand-serif {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] .brand-serif {
+  line-height: 1.08;
+}
+
+html[lang="ar"] .nav-link,
+html[lang="ar"] .btn,
+html[lang="ar"] .booking-submit,
+html[lang="ar"] .booking-label,
+html[lang="ar"] .booking-section-title,
+html[lang="ar"] .card-cta,
+html[lang="ar"] .transport-meta span,
+html[lang="ar"] .site-footer h3 {
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .hero-media::after {
+  background:
+    linear-gradient(270deg, rgba(7, 17, 31, 0.92) 0%, rgba(7, 17, 31, 0.66) 43%, rgba(7, 17, 31, 0.25) 100%),
+    linear-gradient(180deg, rgba(7, 17, 31, 0.18), rgba(7, 17, 31, 0.78));
+}
+
+html[dir="rtl"] .btn,
+html[dir="rtl"] .card-cta {
+  direction: rtl;
+}
+
+html[dir="rtl"] .btn svg {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .highlight-list li {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+html[dir="rtl"] .highlight-list li::before {
+  left: auto;
+  right: 0;
+}
+
+html[dir="rtl"] .booking-input,
+html[dir="rtl"] .booking-label,
+html[dir="rtl"] .transport-meta span {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] input[type="email"],
+html[dir="rtl"] input[type="tel"],
+html[dir="rtl"] input[type="datetime-local"] {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="rtl"] .footer-link:hover {
+  transform: translateX(-4px);
+}
+
+html[dir="rtl"] .language-toggle,
+html[dir="rtl"] .language-option {
+  direction: ltr;
+  text-align: center;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -808,6 +938,17 @@ svg {
 
   .btn {
     width: 100%;
+  }
+
+  .language-toggle {
+    padding: 0.26rem;
+    box-shadow: 0 14px 34px rgba(7, 17, 31, 0.26);
+  }
+
+  .language-option {
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.68rem;
   }
 }
 
