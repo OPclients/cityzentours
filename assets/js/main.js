@@ -1,15 +1,15 @@
 const pages = [
-  ["Home", "index.html"],
-  ["Tours", "tours.html"],
-  ["Transport", "transport.html"],
-  ["About", "about.html"],
-  ["Contact", "contact.html"],
+  ["Home", "Accueil", "index.html"],
+  ["Tours", "Circuits", "tours.html"],
+  ["Transport", "Transport", "transport.html"],
+  ["About", "À propos", "about.html"],
+  ["Contact", "Contact", "contact.html"],
 ];
 
 const legalLinks = [
-  ["Privacy Policy", "privacy.html"],
-  ["Refund Policy", "refund.html"],
-  ["Terms & Conditions", "terms.html"],
+  ["Politique de confidentialité", "privacy.html"],
+  ["Politique de remboursement", "refund.html"],
+  ["Conditions générales", "terms.html"],
 ];
 
 const pageName = document.body.dataset.page || "Home";
@@ -34,22 +34,22 @@ function buildHeader() {
   header.className = "site-header";
   header.innerHTML = `
     <nav class="container-lux relative z-50 flex h-20 items-center justify-between">
-      <a href="index.html" class="group flex items-center" aria-label="Cityzen Tours home">
-        <img class="brand-logo" src="assets/images/logo.png" alt="Cityzen Tours logo">
+      <a href="index.html" class="group flex items-center" aria-label="Accueil CityZen Tours">
+        <img class="brand-logo" src="assets/images/logo.png" alt="Logo CityZen Tours">
       </a>
       <div class="hidden items-center gap-8 lg:flex">
-        ${pages.map(([label, href]) => `<a class="nav-link ${pageName === label ? "active" : ""}" href="${href}">${label}</a>`).join("")}
+        ${pages.map(([id, label, href]) => `<a class="nav-link ${pageName === id ? "active" : ""}" href="${href}">${label}</a>`).join("")}
       </div>
-      <a href="contact.html" class="btn btn-gold hidden min-h-11 px-5 py-3 lg:inline-flex">Start Planning <span class="h-4 w-4">${iconSvg("arrow")}</span></a>
-      <button class="menu-toggle grid h-11 w-11 place-items-center rounded-full border border-[rgba(201,164,92,.32)] text-[#F8F4EC] lg:hidden" aria-label="Open menu" aria-expanded="false">
+      <a href="contact.html" class="btn btn-gold hidden min-h-11 px-5 py-3 lg:inline-flex">Commencer à planifier <span class="h-4 w-4">${iconSvg("arrow")}</span></a>
+      <button class="menu-toggle grid h-11 w-11 place-items-center rounded-full border border-[rgba(201,164,92,.32)] text-[#F8F4EC] lg:hidden" aria-label="Ouvrir le menu" aria-expanded="false">
         <span class="h-6 w-6">${iconSvg("menu")}</span>
       </button>
     </nav>
     <div class="mobile-panel fixed inset-x-0 top-0 z-40 bg-[#07111F]/95 px-6 pb-8 pt-24 shadow-2xl backdrop-blur-xl lg:hidden">
       <div class="grid gap-4">
-        ${pages.map(([label, href]) => `<a class="rounded-2xl border border-[rgba(201,164,92,.18)] px-5 py-4 text-sm font-bold uppercase tracking-[.16em] text-[#F8F4EC] ${pageName === label ? "bg-[rgba(201,164,92,.12)] text-[#C9A45C]" : ""}" href="${href}">${label}</a>`).join("")}
+        ${pages.map(([id, label, href]) => `<a class="rounded-2xl border border-[rgba(201,164,92,.18)] px-5 py-4 text-sm font-bold uppercase tracking-[.16em] text-[#F8F4EC] ${pageName === id ? "bg-[rgba(201,164,92,.12)] text-[#C9A45C]" : ""}" href="${href}">${label}</a>`).join("")}
       </div>
-      <a href="contact.html" class="btn btn-gold mt-6">Start Planning <span class="h-4 w-4">${iconSvg("arrow")}</span></a>
+      <a href="contact.html" class="btn btn-gold mt-6">Commencer à planifier <span class="h-4 w-4">${iconSvg("arrow")}</span></a>
     </div>
   `;
   document.body.prepend(header);
@@ -60,7 +60,7 @@ function buildHeader() {
     panel.classList.toggle("open", open);
     document.body.classList.toggle("menu-open", open);
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    toggle.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
     toggle.innerHTML = `<span class="h-6 w-6">${iconSvg(open ? "close" : "menu")}</span>`;
   };
 
@@ -89,10 +89,10 @@ function buildFooter() {
     <div class="container-lux">
       <div class="grid gap-10 border-b border-[rgba(201,164,92,.18)] pb-12 lg:grid-cols-[1.35fr_.8fr_.8fr_.8fr_1fr]">
         <div>
-          <a href="index.html" class="inline-flex items-center" aria-label="Cityzen Tours home">
-            <img class="footer-logo" src="assets/images/logo.png" alt="Cityzen Tours logo">
+          <a href="index.html" class="inline-flex items-center" aria-label="Accueil CityZen Tours">
+            <img class="footer-logo" src="assets/images/logo.png" alt="Logo CityZen Tours">
           </a>
-          <p class="mt-6 max-w-sm leading-8">Private Moroccan journeys, elegant chauffeur services, and luxury transport arranged around your schedule, style, and pace.</p>
+          <p class="mt-6 max-w-sm leading-8">Voyages privés au Maroc, services de chauffeur élégants et transport de luxe organisés selon vos horaires, votre style et votre rythme.</p>
           <div class="mt-6 flex gap-3">
             <a class="social-dot" href="#" aria-label="Instagram">IG</a>
             <a class="social-dot" href="#" aria-label="Facebook">FB</a>
@@ -100,30 +100,30 @@ function buildFooter() {
           </div>
         </div>
         <div>
-          <h3 class="mb-5 text-sm font-bold uppercase tracking-[.2em] text-[#C9A45C]">Quick Links</h3>
-          ${pages.map(([label, href]) => `<a class="footer-link" href="${href}">${label}</a>`).join("")}
+          <h3 class="mb-5 text-sm font-bold uppercase tracking-[.2em] text-[#C9A45C]">Navigation</h3>
+          ${pages.map(([, label, href]) => `<a class="footer-link" href="${href}">${label}</a>`).join("")}
         </div>
         <div>
           <h3 class="mb-5 text-sm font-bold uppercase tracking-[.2em] text-[#C9A45C]">Services</h3>
-          <a class="footer-link" href="tours.html">Custom Tours</a>
-          <a class="footer-link" href="transport.html">Luxury Transport</a>
-          <a class="footer-link" href="transport.html#services">Airport Transfers</a>
-          <a class="footer-link" href="transport.html#services">Private Chauffeur</a>
+          <a class="footer-link" href="tours.html">Circuits sur mesure</a>
+          <a class="footer-link" href="transport.html">Transport de luxe</a>
+          <a class="footer-link" href="transport.html#services">Transferts aéroportuaires</a>
+          <a class="footer-link" href="transport.html#services">Chauffeur privé</a>
         </div>
         <div>
-          <h3 class="mb-5 text-sm font-bold uppercase tracking-[.2em] text-[#C9A45C]">Legal</h3>
+          <h3 class="mb-5 text-sm font-bold uppercase tracking-[.2em] text-[#C9A45C]">Mentions légales</h3>
           ${legalLinks.map(([label, href]) => `<a class="footer-link" href="${href}">${label}</a>`).join("")}
         </div>
         <div>
           <h3 class="mb-5 text-sm font-bold uppercase tracking-[.2em] text-[#C9A45C]">Contact</h3>
-          <p class="leading-8">Marrakech, Morocco<br>Available across Morocco</p>
+          <p class="leading-8">Marrakech, Maroc<br>Disponible dans tout le Maroc</p>
           <a class="footer-link mt-3 text-[#C9A45C]" href="https://wa.me/${whatsappNumber}" target="_blank" rel="noreferrer">WhatsApp: +212 600 000 000</a>
           <a class="footer-link" href="mailto:hello@cityzentours.example">hello@cityzentours.example</a>
         </div>
       </div>
       <div class="flex flex-col gap-3 pt-8 text-sm text-[rgba(248,244,236,.56)] md:flex-row md:items-center md:justify-between">
-        <p>Copyright <span id="year"></span> Cityzen Tours. All rights reserved.</p>
-        <p>Luxury custom tours and private chauffeur service in Morocco.</p>
+        <p>Copyright <span id="year"></span> CityZen Tours. Tous droits réservés.</p>
+        <p>Circuits de luxe sur mesure et service de chauffeur privé au Maroc.</p>
       </div>
     </div>
   `;
