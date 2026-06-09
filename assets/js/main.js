@@ -16,8 +16,19 @@ const languages = ["en", "fr", "ar"];
 const defaultLanguage = "fr";
 const languageStorageKey = "cityzen-language";
 const pageName = document.body.dataset.page || "Home";
+const CONTACT_FORM_URL = "contact.html#contact-form";
 const whatsappNumber = "212600000000";
 const businessEmail = "hello@cityzentours.example";
+const SOCIAL_LINKS = {
+  whatsapp: `https://wa.me/${whatsappNumber}`,
+  instagram: "https://www.instagram.com/cityzentours/",
+  facebook: "https://www.facebook.com/cityzentours/",
+};
+const socialItems = [
+  ["whatsapp", "social.whatsapp"],
+  ["instagram", "social.instagram"],
+  ["facebook", "social.facebook"],
+];
 let currentLanguage = defaultLanguage;
 let menuIsOpen = false;
 let menuToggleButton;
@@ -68,7 +79,12 @@ const translations = {
     "language.french": "Switch to French",
     "language.arabic": "Switch to Arabic",
 
+    "social.whatsapp": "Open WhatsApp chat",
+    "social.instagram": "Open Instagram profile",
+    "social.facebook": "Open Facebook page",
+
     "footer.description": "Private Moroccan journeys, elegant chauffeur services, and luxury transport arranged around your schedule, style, and pace.",
+    "footer.follow": "FOLLOW CITYZEN TOURS",
     "footer.navigation": "Navigation",
     "footer.services": "Services",
     "footer.service.customTours": "Custom tours",
@@ -286,6 +302,8 @@ const translations = {
     "contact.info.area.body": "Morocco, including Marrakech, Fes, Casablanca, Rabat, Chefchaouen, Merzouga, and Essaouira.",
     "contact.info.availability.title": "Availability",
     "contact.info.availability.body": "7/7 on request for private tours, transfers, events, and chauffeur service.",
+    "contact.social.title": "Follow CityZen Tours",
+    "contact.social.body": "Join our social channels for Morocco travel inspiration, luxury transport updates, and private tour ideas.",
     "contact.area.title": "Service area",
     "contact.area.body": "Marrakech, Casablanca, Rabat, Fes, Tangier, Chefchaouen, Essaouira, Agafay, Atlas Mountains, Merzouga, and long-distance routes across Morocco.",
     "contact.area.cta": "WhatsApp Us Now",
@@ -366,7 +384,12 @@ const translations = {
     "language.french": "Passer en français",
     "language.arabic": "Passer en arabe",
 
+    "social.whatsapp": "Ouvrir la discussion WhatsApp",
+    "social.instagram": "Ouvrir le profil Instagram",
+    "social.facebook": "Ouvrir la page Facebook",
+
     "footer.description": "Voyages privés au Maroc, services de chauffeur élégants et transport de luxe organisés selon vos horaires, votre style et votre rythme.",
+    "footer.follow": "SUIVRE CITYZEN TOURS",
     "footer.navigation": "Navigation",
     "footer.services": "Services",
     "footer.service.customTours": "Circuits sur mesure",
@@ -584,6 +607,8 @@ const translations = {
     "contact.info.area.body": "Le Maroc, notamment Marrakech, Fès, Casablanca, Rabat, Chefchaouen, Merzouga et Essaouira.",
     "contact.info.availability.title": "Disponibilité",
     "contact.info.availability.body": "7j/7 sur demande pour les circuits privés, transferts, événements et services de chauffeur.",
+    "contact.social.title": "Suivre CityZen Tours",
+    "contact.social.body": "Retrouvez nos inspirations de voyage au Maroc, nos actualités de transport de luxe et nos idées de circuits privés.",
     "contact.area.title": "Zone de service",
     "contact.area.body": "Marrakech, Casablanca, Rabat, Fès, Tanger, Chefchaouen, Essaouira, Agafay, montagnes de l’Atlas, Merzouga et trajets longue distance à travers le Maroc.",
     "contact.area.cta": "Nous écrire sur WhatsApp",
@@ -664,7 +689,12 @@ const translations = {
     "language.french": "التبديل إلى الفرنسية",
     "language.arabic": "التبديل إلى العربية",
 
+    "social.whatsapp": "فتح محادثة واتساب",
+    "social.instagram": "فتح حساب إنستغرام",
+    "social.facebook": "فتح صفحة فيسبوك",
+
     "footer.description": "رحلات خاصة في المغرب، خدمات سائق أنيقة، ونقل فاخر ينظم وفق جدولكم وأسلوبكم وإيقاع سفركم.",
+    "footer.follow": "تابعوا CityZen Tours",
     "footer.navigation": "التنقل",
     "footer.services": "الخدمات",
     "footer.service.customTours": "جولات مصممة حسب الطلب",
@@ -882,6 +912,8 @@ const translations = {
     "contact.info.area.body": "المغرب، بما في ذلك مراكش وفاس والدار البيضاء والرباط وشفشاون ومرزوكة والصويرة.",
     "contact.info.availability.title": "التوفر",
     "contact.info.availability.body": "7 أيام في الأسبوع عند الطلب للجولات الخاصة والتحويلات والفعاليات وخدمة السائق.",
+    "contact.social.title": "تابعوا CityZen Tours",
+    "contact.social.body": "انضموا إلى قنواتنا لاكتشاف إلهام السفر في المغرب، وأخبار النقل الفاخر، وأفكار الجولات الخاصة.",
     "contact.area.title": "منطقة الخدمة",
     "contact.area.body": "مراكش، الدار البيضاء، الرباط، فاس، طنجة، شفشاون، الصويرة، أكفاي، جبال الأطلس، مرزوكة، والمسارات الطويلة عبر المغرب.",
     "contact.area.cta": "راسلونا على واتساب",
@@ -939,8 +971,43 @@ function iconSvg(name) {
     car: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.3 10.5 8 6.8c.3-.7 1-1.1 1.8-1.1h4.4c.8 0 1.5.4 1.8 1.1l1.7 3.7M5 15h14M6.5 17.8h.1M17.4 17.8h.1M4.8 10.5h14.4c.8 0 1.5.7 1.5 1.5v4.6c0 .7-.5 1.2-1.2 1.2H4.5c-.7 0-1.2-.5-1.2-1.2V12c0-.8.7-1.5 1.5-1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     star: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3 2.7 5.6 6.2.9-4.5 4.4 1.1 6.1-5.5-2.9L6.5 20l1.1-6.1-4.5-4.4 6.2-.9L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
     phone: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.2 4.5 9.4 9l-2 1.5c1.3 2.6 3.5 4.8 6.1 6.1l1.5-2 4.5 2.2c.5.2.8.8.6 1.3-.4 1.4-1.7 2.4-3.2 2.4C9.5 20.5 3.5 14.5 3.5 7.1c0-1.5 1-2.8 2.4-3.2.5-.2 1.1.1 1.3.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
+    whatsapp: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5.2 18.8 6.3 15.1a7.4 7.4 0 1 1 2.8 2.7l-3.9 1Z" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 8.8c.2-.4.4-.5.7-.5h.4c.2 0 .3.1.4.4l.6 1.4c.1.2.1.4-.1.6l-.4.5c-.1.1-.1.3 0 .4.5.9 1.2 1.6 2.1 2.1.2.1.3.1.5 0l.6-.5c.2-.2.4-.2.6-.1l1.4.7c.3.1.4.3.3.6-.1.5-.3.9-.6 1.1-.4.3-.9.4-1.4.3-2.6-.6-5.1-3-5.7-5.6-.1-.5 0-1 .3-1.4Z" fill="currentColor"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.55"/><circle cx="12" cy="12" r="3.25" stroke="currentColor" stroke-width="1.55"/><circle cx="16.2" cy="7.8" r="1" fill="currentColor"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 8.2h2.2V5.3A11.2 11.2 0 0 0 13.4 5c-2.7 0-4.5 1.6-4.5 4.5v2.4H6.2v3.2h2.7V21h3.4v-5.9h2.8l.5-3.2h-3.3V9.8c0-.9.3-1.6 1.7-1.6Z" fill="currentColor"/></svg>',
   };
   return icons[name] || icons.arrow;
+}
+
+function buildSocialLinks(context = "default") {
+  return socialItems.map(([name, labelKey]) => `
+    <a class="social-icon social-icon-${name} social-icon-${context}" href="${SOCIAL_LINKS[name]}" target="_blank" rel="noreferrer" data-i18n-label="${labelKey}" aria-label="${name}">
+      ${iconSvg(name)}
+    </a>
+  `).join("");
+}
+
+function populateSocialLinkContainers() {
+  document.querySelectorAll("[data-social-links]").forEach((container) => {
+    const context = container.dataset.socialLinks || "default";
+    container.innerHTML = buildSocialLinks(context);
+  });
+}
+
+function hydrateSocialUrls() {
+  document.querySelectorAll("[data-social-url]").forEach((link) => {
+    const service = link.dataset.socialUrl;
+    const url = SOCIAL_LINKS[service];
+    if (!url) return;
+    link.setAttribute("href", url);
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noreferrer");
+  });
+}
+
+function hydrateContactCtas() {
+  document.querySelectorAll('a[data-contact-cta], a.btn[href="contact.html"], a.card-cta[href="contact.html"]').forEach((link) => {
+    link.setAttribute("href", CONTACT_FORM_URL);
+  });
 }
 
 function getStoredLanguage() {
@@ -973,7 +1040,9 @@ function buildHeader() {
       <div class="hidden items-center gap-8 lg:flex">
         ${pages.map(([id, labelKey, href]) => `<a class="nav-link ${pageName === id ? "active" : ""}" href="${href}" data-i18n="${labelKey}"></a>`).join("")}
       </div>
-      <a href="contact.html" class="btn btn-gold hidden min-h-11 px-5 py-3 lg:inline-flex"><span data-i18n="nav.cta"></span><span class="h-4 w-4">${iconSvg("arrow")}</span></a>
+      <div class="hidden items-center gap-3 lg:flex">
+        <a href="${CONTACT_FORM_URL}" class="btn btn-gold min-h-11 px-5 py-3"><span data-i18n="nav.cta"></span><span class="h-4 w-4">${iconSvg("arrow")}</span></a>
+      </div>
       <button class="menu-toggle grid h-11 w-11 place-items-center rounded-full border border-[rgba(201,164,92,.32)] text-[#F8F4EC] lg:hidden" data-i18n-label="nav.menu.open" aria-label="Open menu" aria-expanded="false">
         <span class="h-6 w-6">${iconSvg("menu")}</span>
       </button>
@@ -982,7 +1051,8 @@ function buildHeader() {
       <div class="grid gap-4">
         ${pages.map(([id, labelKey, href]) => `<a class="rounded-2xl border border-[rgba(201,164,92,.18)] px-5 py-4 text-sm font-bold uppercase tracking-[.16em] text-[#F8F4EC] ${pageName === id ? "bg-[rgba(201,164,92,.12)] text-[#C9A45C]" : ""}" href="${href}" data-i18n="${labelKey}"></a>`).join("")}
       </div>
-      <a href="contact.html" class="btn btn-gold mt-6"><span data-i18n="nav.cta"></span><span class="h-4 w-4">${iconSvg("arrow")}</span></a>
+      
+      <a href="${CONTACT_FORM_URL}" class="btn btn-gold mt-6"><span data-i18n="nav.cta"></span><span class="h-4 w-4">${iconSvg("arrow")}</span></a>
     </div>
   `;
   document.body.prepend(header);
@@ -1027,11 +1097,7 @@ function buildFooter() {
             <img class="footer-logo" src="assets/images/logo.png" data-i18n-alt="brand.logoAlt" alt="CityZen Tours logo">
           </a>
           <p class="mt-6 max-w-sm leading-8" data-i18n="footer.description"></p>
-          <div class="mt-6 flex gap-3">
-            <a class="social-dot" href="#" aria-label="Instagram">IG</a>
-            <a class="social-dot" href="#" aria-label="Facebook">FB</a>
-            <a class="social-dot" href="#" aria-label="TikTok">TK</a>
-          </div>
+          
         </div>
         <div>
           <h3 class="mb-5 text-sm font-bold uppercase tracking-[.2em] text-[#C9A45C]" data-i18n="footer.navigation"></h3>
@@ -1051,7 +1117,7 @@ function buildFooter() {
         <div>
           <h3 class="mb-5 text-sm font-bold uppercase tracking-[.2em] text-[#C9A45C]" data-i18n="footer.contact"></h3>
           <p class="leading-8" data-i18n-html="footer.location"></p>
-          <a class="footer-link mt-3 text-[#C9A45C]" href="https://wa.me/${whatsappNumber}" target="_blank" rel="noreferrer">WhatsApp: +212 600 000 000</a>
+          <a class="footer-link mt-3 text-[#C9A45C]" href="${SOCIAL_LINKS.whatsapp}" target="_blank" rel="noreferrer">WhatsApp: +212 600 000 000</a>
           <a class="footer-link" href="mailto:hello@cityzentours.example">hello@cityzentours.example</a>
         </div>
       </div>
@@ -1244,11 +1310,56 @@ function initContactForm() {
   });
 }
 
+function scrollToContactForm() {
+  const target = document.querySelector("#contact-form");
+  const formCard = document.querySelector("#contactForm");
+  if (!target || !formCard) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const headerOffset = 96;
+  const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset);
+
+  window.scrollTo({
+    top,
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+  });
+
+  formCard.setAttribute("tabindex", "-1");
+  formCard.classList.remove("form-arrival-highlight");
+  void formCard.offsetWidth;
+  formCard.classList.add("form-arrival-highlight");
+
+  window.setTimeout(() => {
+    formCard.focus({ preventScroll: true });
+  }, prefersReducedMotion ? 0 : 420);
+
+  window.setTimeout(() => {
+    formCard.classList.remove("form-arrival-highlight");
+  }, prefersReducedMotion ? 600 : 2400);
+}
+
+function initContactFormAnchor() {
+  if (pageName !== "Contact") return;
+
+  const handleHash = () => {
+    if (window.location.hash === "#contact-form") {
+      window.setTimeout(scrollToContactForm, 120);
+    }
+  };
+
+  handleHash();
+  window.addEventListener("hashchange", handleHash);
+}
+
 buildHeader();
 buildFooter();
 buildLanguageToggle();
+populateSocialLinkContainers();
+hydrateSocialUrls();
+hydrateContactCtas();
 setLanguage(getStoredLanguage());
 initReveal();
 initCounters();
 initImageFallbacks();
 initContactForm();
+initContactFormAnchor();
